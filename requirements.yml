@@ -1,0 +1,3 @@
+---
+- src: noobient.nginx
+- src: noobient.postgresql
