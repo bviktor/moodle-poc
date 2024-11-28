@@ -1,0 +1,37 @@
+---
+- name: Obtain Moodle
+  unarchive:
+    src: "https://download.moodle.org/download.php/direct/stable{{ moodle_branch }}/moodle-latest-{{ moodle_branch }}.tgz"
+    remote_src: true
+    dest: /var/www/html
+
+- name: Set up Moodle symlink
+  file:
+    src: "{{ moodle_root }}"
+    dest: "/var/www/html/{{ moodle_domain }}"
+    owner: nginx
+    group: nginx
+    state: link
+
+- name: Set up Moodle permissions
+  file:
+    dest: "{{ moodle_root }}"
+    owner: nginx
+    group: nginx
+    mode: u=rwX,g=rX,o=rX
+    recurse: true
+
+- name: Create Moodle data root
+  file:
+    path: /var/www/html/moodledata
+    state: directory
+    mode: '0755'
+    owner: nginx
+    group: nginx
+
+- include_role:
+    name: noobient.setfcontext
+  vars:
+    path: '/var/www/html/moodledata'
+    type: 'httpd_sys_rw_content_t'
+    pattern: "/var/www/html/moodledata(/.*)?"

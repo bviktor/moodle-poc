@@ -1,2 +1,4 @@
 ---
-- include_tasks: foo.yml
+- include_tasks: postgres.yml
+- include_tasks: nginx.yml
+- include_tasks: structure.yml

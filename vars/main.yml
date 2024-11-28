@@ -1,0 +1,9 @@
+---
+create_role_success_str: 'CREATE ROLE'
+create_role_fail_str: 'ERROR:  role "moodle" already exists'
+create_db_success_str: 'CREATE DATABASE'
+create_db_fail_str: 'ERROR:  database "moodle" already exists'
+
+moodle_domain: moodle.test
+moodle_root: /var/www/html/moodle
+moodle_branch: 405

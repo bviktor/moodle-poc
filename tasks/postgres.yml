@@ -1,0 +1,28 @@
+---
+- include_role:
+    name: noobient.postgresql
+  vars:
+    enabled: true
+
+- name: Start PostgreSQL
+  systemd_service:
+    name: postgresql-17.service
+    state: started
+
+- name: Create Moodle role
+  become: true
+  become_user: postgres
+  command:
+    cmd: psql -c "CREATE ROLE moodle LOGIN ENCRYPTED PASSWORD 'Asdf1234' NOINHERIT VALID UNTIL 'infinity';"
+  register: psql_create_role
+  changed_when: create_role_success_str in psql_create_role.stdout
+  failed_when: psql_create_role.rc != 0 and create_role_fail_str not in psql_create_role.stderr
+
+- name: Create Moodle database
+  become: true
+  become_user: postgres
+  command:
+    cmd: psql -c "CREATE DATABASE moodle WITH ENCODING='UTF8' OWNER=moodle;"
+  register: psql_create_db
+  changed_when: create_db_success_str in psql_create_db.stdout
+  failed_when: psql_create_db.rc != 0 and create_db_fail_str not in psql_create_db.stderr
