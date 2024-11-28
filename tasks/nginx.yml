@@ -5,4 +5,4 @@
     domain: "{{ moodle_domain }}"
     mode: moodle
     ssl_selfsigned: true
-    host_port: 8443
+    host_port: 443
