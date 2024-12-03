@@ -1,4 +1,6 @@
 ---
+- name: noobient.acme
+- name: noobient.cloudflare
 - name: noobient.nginx
 - name: noobient.postgresql
 - name: noobient.setfcontext

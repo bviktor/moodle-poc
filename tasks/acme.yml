@@ -1,0 +1,11 @@
+---
+- include_role:
+    name: noobient.acme
+  vars:
+    domain: moodle.noobient.com
+    provider: cf
+    credential:
+      CF_Token: "{{ lookup('ansible.builtin.env', 'CF_Token') }}"
+      CF_Zone_ID: "{{ lookup('ansible.builtin.env', 'CF_Zone_ID') }}"
+    staging: false
+    cronjob: true

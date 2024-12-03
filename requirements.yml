@@ -1,4 +1,6 @@
 ---
+- src: noobient.acme
+- src: noobient.cloudflare
 - src: noobient.nginx
 - src: noobient.postgresql
 - src: noobient.setfcontext

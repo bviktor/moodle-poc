@@ -4,5 +4,5 @@
   vars:
     domain: "{{ moodle_domain }}"
     mode: moodle
-    ssl_selfsigned: true
+    ssl_selfsigned: false
     host_port: 443

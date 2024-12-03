@@ -1,0 +1,6 @@
+---
+- hosts: moodle
+  connection: ssh
+  become: true
+  roles:
+    - moodle
